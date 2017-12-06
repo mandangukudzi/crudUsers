@@ -10,5 +10,11 @@
  </ion-header>
 
 <ion-content padding>
- Display users here
+ <ion-list>
+   <ul *ngFor="let theUser of users">
+     <h4> {{theUser.id}}</h4> <br/>
+     <strong>{{theUser.surname}}</strong> <br/>
+     <strong>{{theUser.email}}</strong> <br/>
+   </ul>
+ </ion-list>
 </ion-content>

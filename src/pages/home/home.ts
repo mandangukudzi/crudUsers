@@ -23,6 +23,7 @@ export class HomePage {
 
   addUser(){
     console.log("Added User");
+    this.navCtrl.push("AddUserPage");
   }
 
 }

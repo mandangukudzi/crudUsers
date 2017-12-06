@@ -22,7 +22,14 @@ export class DataProvider {
   users: Observable<any>;
 
   constructor(public afs: AngularFirestore) {
-    this.users = this.afs.collection('propayUsers').valueChanges();
+    //this.users = this.afs.collection('propayUsers').valueChanges();
+    this.users = this.afs.collection("propayUsers").snapshotChanges().map( changes => {
+      return changes.map( a => {
+      const data = a.payload.doc.data() as User;
+      data.id = a.payload.doc.id;
+      return data; 
+      });
+    });
   }
 
   getUsers(){
