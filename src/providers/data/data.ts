@@ -55,8 +55,10 @@ export class DataProvider {
   }  
 
   deleteUser(user: User){
-    this.userDoc = this.afs.doc(`propayUsers/{$user.id}`);
+    console.log("Deleting properly", user.name);
+    this.userDoc = this.afs.doc(`propayUsers/${user.id}`);
     this.userDoc.delete();
+    
   }
 
   updateUser(user: User){

@@ -35,14 +35,15 @@ export class HomePage {
   }
 
   editUser(event, user){
-    console.log("The user is: ", user.name)
+    console.log("Editing : ", user.name);
     this.editState = true;
     this.userToEdit = user;
   }
 
   deleteUser(event, user){
-    console.log("User deleted: ", user.name);
+    console.log("Deleting: ", user.name);    
     this.dataService.deleteUser(user);
+    
   }
 
   userDetail(event, user){
