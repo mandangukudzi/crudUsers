@@ -10,7 +10,9 @@ import { User } from '../../user-model';
 })
 export class HomePage {
   users: User[];
-  
+  editState: boolean = false;
+  userToEdit: User;
+
   constructor(public navCtrl: NavController, public dataService: DataProvider) {
 
   }
@@ -26,4 +28,8 @@ export class HomePage {
     this.navCtrl.push("AddUserPage");
   }
 
+  editUser(event, user){
+    this.editState = true;
+    this.userToEdit = user;
+  }
 }
