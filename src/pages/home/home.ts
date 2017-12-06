@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+
+import { ModalController } from 'ionic-angular/components/modal/modal-controller';
+
 import { DataProvider } from '../../providers/data/data';
 import { User } from '../../user-model';
 
@@ -13,7 +16,8 @@ export class HomePage {
   editState: boolean = false;
   userToEdit: User;
 
-  constructor(public navCtrl: NavController, public dataService: DataProvider) {
+  constructor(public navCtrl: NavController, public dataService: DataProvider,
+  public modalCtrl: ModalController) {
 
   }
 
@@ -24,12 +28,24 @@ export class HomePage {
   }
 
   addUser(){
-    console.log("Added User");
-    this.navCtrl.push("AddUserPage");
+    let myModal = this.modalCtrl.create("AddUserPage");
+    myModal.present();
+    
   }
 
   editUser(event, user){
+    console.log("The user is: ", user.name)
     this.editState = true;
     this.userToEdit = user;
+  }
+
+  deleteUser(event, user){
+    console.log("User deleted: ", user.name);
+    this.dataService.deleteUser(user);
+  }
+
+  userDetail(user){
+    let myModal = this.modalCtrl.create("UserDetailPage" , {user: this.userToEdit} );
+    myModal.present();
   }
 }

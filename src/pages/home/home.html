@@ -9,12 +9,36 @@
   </ion-navbar>
  </ion-header>
 
-<ion-content padding>
- <ion-list>
-   <ul *ngFor="let theUser of users">
-     <h4> {{theUser.name}}</h4> <br/>
-     <strong>{{theUser.surname}}</strong> <br/>
-     <strong>{{theUser.email}}</strong> <br/>
-   </ul>
- </ion-list>
+<ion-content no-padding>
+  <ion-grid>
+    
+
+
+    
+      <ion-list>
+          <ion-row>
+              <ion-col col-2><strong>ID</strong></ion-col>
+              <ion-col col-3><strong>SURNAME</strong></ion-col>
+              <ion-col col-3><strong>EMAIL</strong></ion-col>
+              <ion-col col-3></ion-col>
+            </ion-row>
+        
+        <ul *ngFor="let theUser of users" >
+            <ion-row>
+                <button ion-iten (click)=userDetail(theUser)>
+            <ion-col col-2><strong>{{theUser.id}}</strong></ion-col>
+            <ion-col col-3><strong>{{theUser.surname}}</strong></ion-col>
+            <ion-col col-3><strong>{{theUser.email}}</strong></ion-col>
+            <ion-col col-2> <button ion-button (click)="editUser($event, theUser)"> Edit </button></ion-col>                   
+            <ion-col col-2> <button ion-button color="danger"  (click)="deleteUser($event, theUser)"> Delete </button></ion-col>  
+          </button>
+            </ion-row>
+        </ul>
+       </ion-list>
+    
+
+    
+
+  </ion-grid>
+ 
 </ion-content>

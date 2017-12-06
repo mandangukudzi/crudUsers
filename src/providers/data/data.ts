@@ -30,7 +30,7 @@ export class DataProvider {
     this.users = this.usersCollection.snapshotChanges().map(changes => {
       return changes.map(a=> {
         const data = a.payload.doc.data() as User;
-        data.id = a.payload.doc.id;
+        data.id = a.payload.doc.id +" ";
         return data;
      });
      });
