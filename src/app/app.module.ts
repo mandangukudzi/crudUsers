@@ -11,6 +11,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DataProvider } from '../providers/data/data';
+import { UserDetailPage } from '../pages/user-detail/user-detail';
 
 
 const firestoreconfig = {
@@ -25,7 +26,8 @@ const firestoreconfig = {
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    UserDetailPage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ const firestoreconfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    UserDetailPage
   ],
   providers: [
     StatusBar,

@@ -5,6 +5,7 @@ import { ModalController } from 'ionic-angular/components/modal/modal-controller
 
 import { DataProvider } from '../../providers/data/data';
 import { User } from '../../user-model';
+import { UserDetailPage } from '../user-detail/user-detail';
 
 
 @Component({
@@ -44,8 +45,10 @@ export class HomePage {
     this.dataService.deleteUser(user);
   }
 
-  userDetail(user){
-    let myModal = this.modalCtrl.create("UserDetailPage" , {user: this.userToEdit} );
+  userDetail(event, user){
+    console.log("From homepage the user is: ", user.name);
+    let myModal = this.modalCtrl.create(UserDetailPage , {'user': user} );
+    
     myModal.present();
   }
 }

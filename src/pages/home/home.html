@@ -25,7 +25,7 @@
         
         <ul *ngFor="let theUser of users" >
             <ion-row>
-                <button ion-iten (click)=userDetail(theUser)>
+                <button ion-iten (click)= "userDetail($event, theUser)">
             <ion-col col-2><strong>{{theUser.id}}</strong></ion-col>
             <ion-col col-3><strong>{{theUser.surname}}</strong></ion-col>
             <ion-col col-3><strong>{{theUser.email}}</strong></ion-col>
