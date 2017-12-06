@@ -16,6 +16,8 @@ import { User } from '../../user-model';
 */
 @Injectable()
 export class DataProvider {
+  
+  userDoc: AngularFirestoreDocument<User>;
 
   usersCollection: AngularFirestoreCollection<User>;
   //users: Observable<User[]>;
@@ -23,19 +25,42 @@ export class DataProvider {
 
   constructor(public afs: AngularFirestore) {
     //this.users = this.afs.collection('propayUsers').valueChanges();
-    this.users = this.afs.collection("propayUsers").snapshotChanges().map( changes => {
-      return changes.map( a => {
-      const data = a.payload.doc.data() as User;
-      data.id = a.payload.doc.id;
-      return data; 
-      });
-    });
+    this.usersCollection = this.afs.collection('propayUsers', ref => ref.orderBy('name', 'asc'));
+
+    this.users = this.usersCollection.snapshotChanges().map(changes => {
+      return changes.map(a=> {
+        const data = a.payload.doc.data() as User;
+        data.id = a.payload.doc.id;
+        return data;
+     });
+     });
+     
+
+
+    // this.users = this.usersCollection.snapshotChanges().map( changes => {
+    //   return changes.map( a => {
+    //   const data = a.payload.doc.data() as User;
+    //   data.id = a.payload.doc.id;
+    //   return data; 
+    //   });
+    // });
   }
 
   getUsers(){
     return this.users
   }
 
-  
+  addUser(user: User){
+    this.usersCollection.add(user);
+  }  
 
+  deleteUser(user: User){
+    this.userDoc = this.afs.doc(`propayUsers/{$user.id}`);
+    this.userDoc.delete();
+  }
+
+  updateUser(user: User){
+    this.userDoc = this.afs.doc(`propayUsers/{$user.id}`);
+    this.userDoc.update(user);
+  }
 }
