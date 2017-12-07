@@ -41,8 +41,8 @@ export class HomePage {
   }
 
   deleteUser(event, user){
-    console.log("Deleting: ", user.name);    
-    this.dataService.deleteUser(user);
+       
+    this.dataService.deleteUser( user);
     
   }
 
