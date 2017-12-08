@@ -15,8 +15,8 @@ import { User } from '../../user-model';
   templateUrl: 'edit-user.html',
 })
 export class EditUserPage {
-  public userForm: FormGroup;
-  public user: User;
+   userForm: FormGroup;
+   user: User;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
     //this.user = this.navParams.get('user');

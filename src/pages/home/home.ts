@@ -37,8 +37,7 @@ export class HomePage {
   }
 
   editUser(event, user){    
-    let myModal = this.modalCtrl.create(EditUserPage , {'user': user} ); 
-    
+    let myModal = this.modalCtrl.create(EditUserPage , {'user': user} );     
     myModal.present();
   }
 
