@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-navbar color="secondary">
+  <ion-title> 
+  <img src = "assets/imgs/logo.png" height="42" width="152" />  
+  </ion-title>
+  <ion-buttons end>
+  
+  </ion-buttons>
+  </ion-navbar>
+ </ion-header>
+
+<ion-content padding>
+  <h1> Edit User: {{user.name}}</h1>
+
+  <form [formGroup] = "userForm" (ngSubmit)="onEdit()">
+      
+      <ion-item>
+            <ion-label stacked>First Name</ion-label>
+            <ion-input formControlName="name" type="text"  ></ion-input>
+      </ion-item>
+  
+      <ion-item>
+          <ion-label stacked>Surname </ion-label>
+          <ion-input formControlName="surname" type="text" ></ion-input>
+      </ion-item>
+  
+      <ion-item>
+          <ion-label stacked>Display Name</ion-label>
+          <ion-input formControlName="display_name" type="text"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+          <ion-label stacked>Email Address</ion-label>
+          <ion-input formControlName="email" type="text"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+          <ion-label stacked>Password</ion-label>
+          <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+          <ion-label stacked>Id Number</ion-label>
+          <ion-input formControlName="id_number" type="text"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+          <ion-label stacked>Cell</ion-label>
+          <ion-input formControlName="cell" type="text"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+          <ion-label stacked>Fax</ion-label>
+          <ion-input formControlName="fax" type="text"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+          <ion-label stacked>Skype</ion-label>
+          <ion-input formControlName="skype" type="text"></ion-input>
+      </ion-item>
+  
+      <button ion-button type="submit" block>Edit User</button>
+  
+     
+      
+  
+    </form>
+
+</ion-content>

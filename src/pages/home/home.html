@@ -23,18 +23,17 @@
               <ion-col col-3></ion-col>
             </ion-row>
         
-        <ul *ngFor="let theUser of users" >
+        <ion-item *ngFor="let theUser of users" >
             <ion-row>
-                <button ion-iten (click)= "userDetail($event, theUser)">
+              <button ion-iten (click)= "userDetail($event, theUser)">
             <ion-col col-2><strong>{{theUser.id}}</strong></ion-col>
             <ion-col col-3><strong>{{theUser.surname}}</strong></ion-col>
-            <ion-col col-3><strong>{{theUser.email}}</strong></ion-col>
-            
-          </button>
+            <ion-col col-3><strong>{{theUser.email}}</strong></ion-col>            
+             </button>
           <ion-col col-2> <button ion-button (click)="editUser($event, theUser)"> Edit </button></ion-col>                   
           <ion-col col-2> <button ion-button color="danger"  (click)="deleteUser($event, theUser)"> Delete </button></ion-col>  
             </ion-row>
-        </ul>
+        </ion-item>
        </ion-list>
     
 

@@ -2,30 +2,27 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+
 import { User } from '../../user-model';
 
 @Injectable()
 export class DataProvider {
   
   userDoc: AngularFirestoreDocument<User>;
-
-  usersCollection: AngularFirestoreCollection<User>;
-  //users: Observable<User[]>;
+//changed from User to any
+  usersCollection: AngularFirestoreCollection<any>;
+  
   users: Observable<any>;
 
   constructor(public afs: AngularFirestore) {
 
-    //this.userDoc = this.afs.doc(‘propayUsers/’+user.id);
-    //this.post = this.postDoc.valueChanges();
-    //this.users = this.afs.collection('propayUsers').valueChanges();
-
-   // this.userDoc = this.afs.doc<User>('propayUsers');
+  
     this.usersCollection = this.afs.collection('propayUsers', ref => ref.orderBy('name', 'asc'));
 
     this.users = this.usersCollection.snapshotChanges().map(changes => {
       return changes.map(a=> {
         const data = a.payload.doc.data() as User;
-        data.id = a.payload.doc.id;
+        //data.id = a.payload.doc.id;
         return data;
      });
      });
@@ -38,22 +35,33 @@ export class DataProvider {
   }
 
   addUser(user: User){
-    this.usersCollection.add(user);
+    this.usersCollection.add(user).then((docRef) => {
+      this.usersCollection.doc(docRef.id).update({
+        userid: docRef.id
+      })
+    })
   }  
 
- deleteUser(user: User){
-    console.log("Deletion successful: ", user.name);
-   // this.afs.doc(‘propayUsers/’+ user.id).delete();
-    this.userDoc = this.afs.doc(`propayUsers/${user.id}`);
-     this.userDoc.delete();
-  }
+//    updateUser(user: User){
+//     console.log("Updated: ", user.name);
+//     this.userDoc = this.afs.doc(`propayUsers/${user.id}`);
+//     this.userDoc.update(user);
+//   }
 
-  updateUser(user: User){
-    this.userDoc = this.afs.doc(`propayUsers/${user.id}`);
-    this.userDoc.update(user);
-  }
-
- 
   
+//  deleteUser(user){
+//    console.log("Everything deleted now...");
+//    this.usersCollection.doc('propayUsers').delete();
+//  }
+
+update(user){
+  this.usersCollection.doc(user.userid).update({
+   user: 'newuser'
+}).then(() => {console.log('updated');})
+}
+
+delete(user){
+  this.usersCollection.doc(user.userid).delete().then(() => {console.log("deleted");})
+}
 
 }

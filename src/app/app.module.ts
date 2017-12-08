@@ -12,6 +12,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DataProvider } from '../providers/data/data';
 import { UserDetailPage } from '../pages/user-detail/user-detail';
+import { EditUserPage } from '../pages/edit-user/edit-user';
 
 
 const firestoreconfig = {
@@ -27,7 +28,8 @@ const firestoreconfig = {
   declarations: [
     MyApp,
     HomePage,
-    UserDetailPage
+    UserDetailPage,
+    EditUserPage   
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,8 @@ const firestoreconfig = {
   entryComponents: [
     MyApp,
     HomePage,
-    UserDetailPage
+    UserDetailPage,
+    EditUserPage   
   ],
   providers: [
     StatusBar,

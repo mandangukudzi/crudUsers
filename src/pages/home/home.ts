@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+//import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 
 import { DataProvider } from '../../providers/data/data';
 import { User } from '../../user-model';
 import { UserDetailPage } from '../user-detail/user-detail';
+import { EditUserPage } from '../edit-user/edit-user';
 
 
 @Component({
@@ -14,12 +17,11 @@ import { UserDetailPage } from '../user-detail/user-detail';
 })
 export class HomePage {
   users: User[];
-  editState: boolean = false;
-  userToEdit: User;
+ 
 
   constructor(public navCtrl: NavController, public dataService: DataProvider,
   public modalCtrl: ModalController) {
-
+   
   }
 
   ionViewDidLoad(){
@@ -34,22 +36,18 @@ export class HomePage {
     
   }
 
-  editUser(event, user){
-    console.log("Editing : ", user.name);
-    this.editState = true;
-    this.userToEdit = user;
-  }
-
-  deleteUser(event, user){
-       
-    this.dataService.deleteUser( user);
-    
-  }
-
-  userDetail(event, user){
-    console.log("From homepage the user is: ", user.name);
-    let myModal = this.modalCtrl.create(UserDetailPage , {'user': user} );
+  editUser(event, user){    
+    let myModal = this.modalCtrl.create(EditUserPage , {'user': user} ); 
     
     myModal.present();
   }
+
+    userDetail(event, user){    
+    let myModal = this.modalCtrl.create(UserDetailPage , {'user': user} );    
+    myModal.present();
+  }
+
+  deleteUser(event, user: User){      
+     this.dataService.delete(user);    
+   }
 }

@@ -1,12 +1,13 @@
 export class User{
     //user attributes
+    key: number;
     id: number;
     name: string;
     surname: string;
     display_name: string;
     email: string;
     password: string;
-    id_number: string;
+    id_number: number;
     avatar: string;
     cell: string;
     fax: string;
